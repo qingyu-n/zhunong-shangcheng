@@ -1,0 +1,25 @@
+-- 创建商品详情表
+CREATE TABLE IF NOT EXISTS `product_detail` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '主键ID',
+  `product_id` BIGINT NOT NULL COMMENT '关联商品ID',
+  `description` TEXT COMMENT '商品描述',
+  `farmer_story` TEXT COMMENT '助农故事',
+  `farmer_image` VARCHAR(500) DEFAULT NULL COMMENT '助农故事图片',
+  `image1` VARCHAR(500) DEFAULT NULL COMMENT '详情图片1',
+  `image2` VARCHAR(500) DEFAULT NULL COMMENT '详情图片2',
+  `image3` VARCHAR(500) DEFAULT NULL COMMENT '详情图片3',
+  `image4` VARCHAR(500) DEFAULT NULL COMMENT '详情图片4',
+  `image5` VARCHAR(500) DEFAULT NULL COMMENT '详情图片5',
+  `param_name` VARCHAR(200) DEFAULT NULL COMMENT '商品名称参数',
+  `param_origin` VARCHAR(100) DEFAULT NULL COMMENT '产地参数',
+  `param_shelf_life` VARCHAR(50) DEFAULT NULL COMMENT '保质期参数',
+  `param_storage` VARCHAR(200) DEFAULT NULL COMMENT '储存方式参数',
+  `param_delivery` VARCHAR(100) DEFAULT NULL COMMENT '发货时间参数',
+  `status` TINYINT DEFAULT 1 COMMENT '状态：0-禁用，1-启用',
+  `create_time` DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `is_delete` TINYINT DEFAULT 0 COMMENT '逻辑删除：0-未删除，1-已删除',
+  PRIMARY KEY (`id`),
+  INDEX `idx_product_id` (`product_id`),
+  INDEX `idx_status` (`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='商品详情表';

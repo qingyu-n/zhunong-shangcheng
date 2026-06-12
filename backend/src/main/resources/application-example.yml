@@ -1,0 +1,84 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: zhunong-mall
+
+  # MySQL数据库配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/zhunong-shangcheng?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: ${DB_USERNAME:your_db_username}
+    password: ${DB_PASSWORD:your_db_password}
+
+  h2:
+    console:
+      enabled: false
+
+  sql:
+    init:
+      mode: never
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    default-property-inclusion: non_null
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-field: is_delete
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+# 七牛云配置 - 请替换为你的真实配置
+qiniu:
+  access-key: ${QINIU_ACCESS_KEY:your_qiniu_access_key}
+  secret-key: ${QINIU_SECRET_KEY:your_qiniu_secret_key}
+  bucket: ${QINIU_BUCKET:your_bucket_name}
+  region: ${QINIU_REGION:z0}
+  domain: ${QINIU_DOMAIN:http://your-domain.com}
+
+# JWT配置 - 请替换为强密钥
+jwt:
+  secret: ${JWT_SECRET:your_strong_jwt_secret_key_here}
+  expiration: 86400000
+  header: Authorization
+  prefix: Bearer
+
+knife4j:
+  enable: true
+  openapi:
+    title: 助农商城管理系统API文档
+    description: 基于SpringBoot3+Vue3的助农商城管理系统接口文档
+    email: admin@zhunong.com
+    concat: 助农商城开发团队
+    url: https://www.zhunong.com
+    version: v1.0.0
+    license: Apache 2.0
+    license-url: https://www.apache.org/licenses/LICENSE-2.0
+    terms-of-service-url: https://www.zhunong.com/terms
+    group:
+      default:
+        group-name: 默认分组
+        api-rule: package
+        api-rule-resources:
+          - com.zhunong.mall.controller
+
+logging:
+  level:
+    com.zhunong.mall: debug
+    org.springframework.security: debug

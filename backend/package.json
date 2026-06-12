@@ -1,0 +1,18 @@
+{
+  "name": "zhunong-mall-backend",
+  "version": "1.0.0",
+  "description": "助农商城管理系统后端服务",
+  "scripts": {
+    "dev": "mvn spring-boot:run",
+    "build": "mvn clean package -DskipTests",
+    "start": "java -jar target/zhunong-mall-1.0.0.jar",
+    "test": "mvn test"
+  },
+  "keywords": [
+    "springboot",
+    "mall",
+    "agriculture"
+  ],
+  "author": "助农商城开发团队",
+  "license": "MIT"
+}
